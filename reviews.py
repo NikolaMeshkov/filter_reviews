@@ -13,26 +13,26 @@ selected_min_rating = ""
 selected_by_date = ""
 selected_priority = ""
 
-def callback():
-    print ('You clicked the button!')
+def apply_filters():
+    
     is_filter_applied = True
     window.destroy()
 
 def select_low_high(selected):
-    print(selected)
+   
     selected_low_high = selected
 
 def select_min_rating(selected):
-    print(selected)
+    
     selected_min_rating = selected
 
 
 def select_by_date(selected):
-    print(selected)
+    
     selected_by_date = selected
 
 def select_priority(selected):
-    print(selected)
+    
     selected_priority = selected
 
 
@@ -63,7 +63,7 @@ w4.pack()
 text = StringVar(window)
 text.set('Filter')
 
-button = Button(window, text='Filter', command=callback)
+button = Button(window, text='Filter', command=apply_filters)
 button.pack()
 
 mainloop()
