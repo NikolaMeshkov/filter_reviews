@@ -67,7 +67,7 @@ def order_by_rating(reviews, selected_order_by_rating1):
 
 def order_by_date(reviews,selected_by_date1):
 	is_reverse = False
-	if selected_by_date1 == "Highest first":
+	if selected_by_date1 == "Newest first":
 		is_reverse = True
 
 	return sorted(reviews, key=lambda review: review['reviewCreatedOnDate'],reverse=is_reverse)
@@ -90,4 +90,32 @@ if prioritize_by_text.get() == 'Yes':
 	reviews_list = order_by_has_text(reviews_list)
 
 print(reviews_list)
+
+
+
+  
+# find total number of rows and
+# columns in list
+total_rows = len(reviews_list)
+root = Tk()
+
+
+for i in range(total_rows):
+	for j in range(1, 4):
+		e = Entry(root, width=30, fg='blue',font=('Arial',16,'bold'))
+		e.grid(row=i, column=j)
+		key = ""
+
+		if j == 1:
+			key = "reviewText"
+		elif j == 2:
+			key = "rating"
+		elif j == 3:
+			key = "reviewCreatedOnDate"
+
+		e.insert(END, reviews_list[i][key])
+
+# create root window
+
+root.mainloop()
 
