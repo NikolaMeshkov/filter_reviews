@@ -19,7 +19,7 @@ def apply_filters():
     window.destroy()
 
 def select_low_high(selected):
-   
+    
     selected_low_high = selected
 
 def select_min_rating(selected):
@@ -69,4 +69,43 @@ button.pack()
 mainloop()
 
 
+
+
+
+json_file = open('reviews.json', 'r', encoding='utf-8-sig')
+
+file_content = json_file.read()
+
+reviews_list = json.loads(file_content)
+
+
+def filter_reviews(reviews):
+	return sorted(reviews, key=lambda review: bool(review['reviewText']), reverse=True) 
+
+def order_by_rating(reviews):
+	return sorted(reviews, key=lambda review: review['rating'], reverse=True)
+
+def order_by_date(reviews):
+	return sorted(reviews, key=lambda review: review['reviewCreatedOnDate'])
+	
+
+def filter_by_stars(reviews, min_review):
+	helper_list = []
+	for item in reviews:
+		if item['rating'] >= min_review:
+			helper_list.append(item)
+	
+	return helper_list
+
+
+reviews_list = filter_by_stars(reviews_list, 3)
+reviews_list = order_by_date(reviews_list)
+reviews_list = order_by_rating(reviews_list)
+
+
+# if selected_priority == 'Yes':
+if True:
+	reviews_list = filter_reviews(reviews_list)
+
+print(reviews_list)
 
